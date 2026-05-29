@@ -10,9 +10,9 @@ export default function App() {
   
 
   const calcularValor = () => {
-    const total = parseFloat(valorTotal);
-    const taxa = parseFloat(taxaServico);
-    const pessoas = parseInt(quantidadePessoas);
+    const total = parseFloat(valorTotal) || 0;
+    const taxa = parseFloat(taxaServico) || 0;
+    const pessoas = parseInt(quantidadePessoas) || 1;
 
     const valorComTaxa = total + (total) * (taxa / 100);
     const valorPorPessoa = valorComTaxa / pessoas;
@@ -24,7 +24,7 @@ export default function App() {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Text style={styles.headerTitle}>
+        <Text style={styles.header}>
           Divisão de Valor Total de Uma Conta!
         </Text>
 
@@ -56,8 +56,8 @@ export default function App() {
       onChangeText={setQuantidadePessoas}
       />
 
-      <TouchableOpacity style={styles.butao} onPress={calcularValor}>
-        <Text style={styles.butaoTexto}>Calcular</Text>
+      <TouchableOpacity style={styles.button} onPress={calcularValor}>
+        <Text style={styles.buttonText}>Calcular</Text>
       </TouchableOpacity>
 
     </View>
@@ -71,25 +71,35 @@ export default function App() {
     </ScrollView>
   );
 }
-<style>
-input:{
-  borderWidth: 1,
-  borderColor: '#ccc',
-  margin: 20,
-  padding: 10,
-  borderRadius: 10,
-  backgroundColor: '#fff',
+const styles = StyleSheet.create({
+container:{
+backgroundColor:'fff',
+alignItems:'center',
+paddingTop:50,
 },
-
-butao:{
+header:{
+  fontSize: 24,
+  fontWeight: 'bold',
+  marginBottom: 20,
+},
+input:{
+  borderWidth:1,
+  borderColor:'#ccc',
+  paddign:10,
+  marginBottom:10,
+  width:'90%',
+  alignSelf:'center',
+  borderRadius:5,
+},
+button:{
   backgroundColor: '#7b1fa2',
   padding: 15,
-  margin: 20,
-  borderRadius: 10,
+  borderRadius: 5,
   alignItems: 'center',
+  marginBottom:20,
 },
 
-butaoTexto:{
+buttonText:{
   color: '#fff',
   fontSize: 18,
   fontWeight: 'bold',
@@ -104,4 +114,4 @@ resultadoTexto:{
   fontSize: 22,
   fontWeight: 'bold',
 }
-</style>
+});
